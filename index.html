@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>无打字音游启动器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      touch-action: none;
+    }
+  </style>
+  <script>
+    window.addEventListener('focusin', (e) => {
+      if (e.target && typeof e.target.blur === 'function') e.target.blur();
+    });
+
+    document.addEventListener('touchstart', function(e) {
+      if (document.activeElement && typeof document.activeElement.blur === 'function') {
+        document.activeElement.blur();
+      }
+    }, true);
+  </script>
+</head>
+<body>
+  <iframe src="https://card.niconi.co.ni/live" allowfullscreen></iframe>
+</body>
+</html>
