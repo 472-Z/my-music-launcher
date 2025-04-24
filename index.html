@@ -11,31 +11,27 @@
       background: black;
       height: 100%;
       overflow: hidden;
-      -webkit-user-select: none !important;
-      user-select: none !important;
-      -webkit-touch-callout: none;
-      -webkit-tap-highlight-color: transparent;
     }
-    iframe {
+
+    .frame-container {
+      position: relative;
       width: 100vw;
-      height: 100vh;
+      height: calc(100vh + 50px); /* 多出一些高度 */
+      top: -50px; /* 这就是关键！页面整体往上移动 50px */
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
       border: none;
       pointer-events: auto;
-      touch-action: none;
-      transform: translateY(-1000px); /* 将页面上移10px，调整为你想要的合适值 */
     }
   </style>
-  <script>
-    // 屏蔽所有可能触发输入的行为
-    document.addEventListener("DOMContentLoaded", () => {
-      document.body.setAttribute("autocomplete", "off");
-      document.body.setAttribute("autocorrect", "off");
-      document.body.setAttribute("autocapitalize", "off");
-      document.body.setAttribute("spellcheck", "false");
-    });
-  </script>
 </head>
 <body>
-  <iframe src="https://card.niconi.co.ni/live/2120_5_GuiltyFarewellParty.json" allowfullscreen></iframe>
+  <div class="frame-container">
+    <iframe src="https://card.niconi.co.ni/live/2120_5_GuiltyFarewellParty.json" allowfullscreen></iframe>
+  </div>
 </body>
 </html>
