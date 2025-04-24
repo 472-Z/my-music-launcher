@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>无打字音游启动器</title>
+  <title>音游启动器</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <style>
     html, body {
@@ -11,26 +11,42 @@
       background: black;
       height: 100%;
       overflow: hidden;
-      -webkit-user-select: none;
-      user-select: none;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
     }
     iframe {
-      border: none;
       width: 100vw;
       height: 100vh;
+      border: none;
+      pointer-events: auto;
       touch-action: none;
     }
   </style>
   <script>
-    window.addEventListener('focusin', (e) => {
-      if (e.target && typeof e.target.blur === 'function') e.target.blur();
+    // 屏蔽所有可能触发输入的行为
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.setAttribute("autocomplete", "off");
+      document.body.setAttribute("autocorrect", "off");
+      document.body.setAttribute("autocapitalize", "off");
+      document.body.setAttribute("spellcheck", "false");
     });
 
+    // 禁用所有聚焦行为
+    window.addEventListener('focusin', (e) => {
+      if (e.target && typeof e.target.blur === 'function') {
+        e.target.blur();
+      }
+    });
+
+    // 额外处理快速连击导致 Safari 误判的问题
     document.addEventListener('touchstart', function(e) {
       if (document.activeElement && typeof document.activeElement.blur === 'function') {
         document.activeElement.blur();
       }
-    }, true);
+      e.preventDefault();
+    }, { passive: false });
   </script>
 </head>
 <body>
