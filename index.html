@@ -22,6 +22,7 @@
       border: none;
       pointer-events: auto;
       touch-action: none;
+      transform: translateY(-10px); /* 将页面上移10px，调整为你想要的合适值 */
     }
   </style>
   <script>
@@ -32,21 +33,6 @@
       document.body.setAttribute("autocapitalize", "off");
       document.body.setAttribute("spellcheck", "false");
     });
-
-    // 禁用所有聚焦行为
-    window.addEventListener('focusin', (e) => {
-      if (e.target && typeof e.target.blur === 'function') {
-        e.target.blur();
-      }
-    });
-
-    // 额外处理快速连击导致 Safari 误判的问题
-    document.addEventListener('touchstart', function(e) {
-      if (document.activeElement && typeof document.activeElement.blur === 'function') {
-        document.activeElement.blur();
-      }
-      e.preventDefault();
-    }, { passive: false });
   </script>
 </head>
 <body>
